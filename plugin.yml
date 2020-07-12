@@ -1,0 +1,62 @@
+name: ChopChopPlugin
+main: err.chopchop.ChopChopPlugin
+version: 1.0.0
+api-version: 1.16
+author: Err0rC0deX
+softdepend: [Res, Towny, MyChunk, WorldGuard]
+commands:
+  chopchop:
+    description: Main plugin controls
+    aliases:
+      cc
+  togglechop:
+    description: Toggle ChopChop
+    permission: chopchop.commands.togglechop
+    aliases:
+      tc
+permissions:
+  chopchop.*:
+    description: Can chop and use all commands
+    children:
+      chopchop.chop: true
+      chopchop.commands.*: true
+  chopchop.chop:
+    description: Player can chop trees in one chop
+  chopchop.commands.*:
+    description: Access to all commands
+    children:
+      chopchop.commands.chopchop.*: true
+      chopchop.commands.togglechop: true
+  chopchop.commands.chopchop.*:
+    description: Access to all admin commands
+    children:
+      chopchop.commands.chopchop.reload: true
+      chopchop.commands.chopchop.info: true
+      chopchop.commands.chopchop.toggle.*: true
+  chopchop.commands.chopchop.info:
+    description: Access to /chopchop
+  chopchop.commands.chopchop.reload:
+    description: Access to /chopchop reload
+  chopchop.commands.chopchop.toggle.*:
+    description: Can toggle all chopchop settings
+    children:
+      chopchop.commands.chopchop.toggle.activebydefault: true
+      chopchop.commands.chopchop.toggle.useanything: true
+      chopchop.commands.chopchop.toggle.moredamagetotools: true
+      chopchop.commands.chopchop.toggle.interruptiftoolbreaks: true
+      chopchop.commands.chopchop.toggle.logsmovedown: true
+      chopchop.commands.chopchop.toggle.onlytrees: true
+  chopchop.commands.chopchop.toggle.activebydefault:
+    description: Can toggle this setting
+  chopchop.commands.chopchop.toggle.useanything:
+    description: Can toggle this setting
+  chopchop.commands.chopchop.toggle.moredamagetotools:
+    description: Can toggle this setting
+  chopchop.commands.chopchop.toggle.interruptiftoolbreaks:
+    description: Can toggle this setting
+  chopchop.commands.chopchop.toggle.logsmovedown:
+    description: Can toggle this setting
+  chopchop.commands.chopchop.toggle.onlytrees:
+    description: Can toggle this setting
+  chopchop.commands.togglechop:
+    description: Access to /togglechop
