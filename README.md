@@ -1,10 +1,6 @@
-# ChopChop Plugin
-by Err0rC0deX
-## Version 1.0.0
-
 Based on ChopThree3 rewrite by gkid117  
-Plugin allows player to chop a log from a tree and then the remaining logs will drop down a block or pop depending on configuration.  
-Plugin is compatible with 1.16.1  
+Mod allows player to chop a log from a tree and then the remaining logs will drop down a block or pop depending on configuration.  
+Mod is compatible with 1.16.1  
 Also works on nether trees  
 
 ## Config
