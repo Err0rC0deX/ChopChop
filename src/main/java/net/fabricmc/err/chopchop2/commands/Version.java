@@ -1,7 +1,7 @@
-package net.fabricmc.err.nowaterredstone.commands;
+package net.fabricmc.err.chopchop2.commands;
 
 import java.util.Optional;
-
+import net.fabricmc.err.chopchop2.ChopChop;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 
@@ -10,18 +10,16 @@ import net.minecraft.server.command.ServerCommandSource;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.Command;
 
-import net.fabricmc.err.nowaterredstone.NoWaterRedstone;
-
 public class Version implements Command<ServerCommandSource> {
 
 	public static String get() {
 		String versionString = "develop";
-		Optional<ModContainer> container = FabricLoader.getInstance().getModContainer(NoWaterRedstone.MODID);
+		Optional<ModContainer> container = FabricLoader.getInstance().getModContainer(ChopChop.MODID);
 		if(container.isPresent()) {
 			String newVersion = container.get().getMetadata().getVersion().toString();
 			if (!newVersion.equals("${version}")) versionString = newVersion;
 		}
-		else NoWaterRedstone.LOGGER.error("Failed to read version!");
+		else ChopChop.LOGGER.error("Failed to read version!");
 		return versionString;
 	}
 

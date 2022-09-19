@@ -1,6 +1,7 @@
 package err.chopchop;
 
 import org.bukkit.block.BlockFace;
+import net.minecraft.block.Block;
 
 public class Definitions
 {

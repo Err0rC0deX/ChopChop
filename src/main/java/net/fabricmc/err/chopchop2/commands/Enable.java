@@ -1,15 +1,15 @@
-package net.fabricmc.err.nowaterredstone.commands;
-
-import net.fabricmc.err.nowaterredstone.Config;
+package net.fabricmc.err.chopchop2.commands;
 
 import net.minecraft.text.LiteralText;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
+import net.fabricmc.err.chopchop2.Config;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class Enable implements Command<ServerCommandSource> {
+	
 	@Override
 	public int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
 		context.getSource().sendFeedback(new LiteralText("enabled: " + Config.enable()), false);

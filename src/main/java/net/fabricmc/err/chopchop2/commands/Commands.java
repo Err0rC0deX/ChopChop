@@ -30,7 +30,12 @@ public class Commands {
 				.literal("version")
 				.executes(new Version())
 				.build();
-				
+			
+			LiteralCommandNode<ServerCommandSource> printInfoNode = CommandManager
+				.literal("info")
+				.executes(new PrintInfo())
+				.build();
+			
 			LiteralCommandNode<ServerCommandSource> enableNode = CommandManager
 				.literal("enable")
 				.requires(source -> source.hasPermissionLevel(Permissions.OP))
@@ -43,6 +48,7 @@ public class Commands {
 			
 			dispatcher.getRoot().addChild(modNode);
 			modNode.addChild(versionNode);
+			modNode.addChild(printInfoNode);
 			modNode.addChild(enableNode);
         });
 	}

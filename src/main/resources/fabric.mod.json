@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "no-water-redstone",
+  "id": "chopchop",
   "version": "${version}",
 
-  "name": "NoWaterRedstone",
-  "description": "Fabric mod to prevent redstone from being washed away.",
+  "name": "ChopChop",
+  "description": "Fabric mod Based on ChopThree3 by gkid117.",
   "authors": ["Err0rC0deX"],
   "contact": {
-    "homepage": "https://github.com/Err0rC0deX/NoWaterRedstone",
-    "sources": "https://github.com/Err0rC0deX/NoWaterRedstone"
+    "homepage": "https://github.com/Err0rC0deX/ChopChop",
+    "sources": "https://github.com/Err0rC0deX/ChopChop"
   },
 
   "license": "CC0-1.0",
@@ -17,7 +17,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.err.nowaterredstone.NoWaterRedstone"
+      "net.fabricmc.err.chopchop.ChopChop"
     ]
   },
   

@@ -1,7 +1,7 @@
-package net.fabricmc.err.nowaterredstone;
+package net.fabricmc.err.chopchop2;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.err.nowaterredstone.commands.Commands;
+import net.fabricmc.err.chopchop2.commands.Commands;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.resource.ResourceManager;
@@ -11,8 +11,8 @@ import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class NoWaterRedstone implements ModInitializer {
-	public static final String MODID = "no-water-redstone";
+public class ChopChop implements ModInitializer {
+	public static final String MODID = "chopchop";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 	private static Boolean loaded = false;
 

@@ -26,6 +26,9 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// https://mvnrepository.com/artifact/org.yaml/snakeyaml
+	implementation 'org.yaml:snakeyaml:1.30'
 }
 
 processResources {
@@ -60,9 +63,9 @@ publishing {
 		mavenJava(MavenPublication) {
 			from components.java
 			pom {
-				name = 'NoWaterRedstone'
+				name = 'ChopChop'
 				description = 'Fabric mod to prevent redstone items from being washed away.'
-				url = 'https://github.com/Err0rC0deX/NoWaterRedstone'
+				url = 'https://github.com/Err0rC0deX/ChopChop'
 			}
 		}
 	}

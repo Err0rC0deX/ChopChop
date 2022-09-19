@@ -1,11 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.fabricmc.err.nowaterredstone.mixin",
+  "package": "net.fabricmc.err.chopchop.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [],
   "client": [],
-  "server": ["FlowableFluidMixin"],
+  "server": ["BlockBreakMixin"],
   "injectors": {
 	"defaultRequire": 1
   }
