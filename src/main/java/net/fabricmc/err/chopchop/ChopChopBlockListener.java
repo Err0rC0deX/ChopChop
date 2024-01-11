@@ -2,6 +2,7 @@ package err.chopchop;
 
 import java.util.LinkedList;
 import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -25,7 +26,7 @@ public class ChopChopBlockListener implements Listener
 	{
 		plugin = instance;
 	}
-	
+
 	public static boolean hasPermission( Player player )
 	{
 		return player.hasPermission( Definitions.plugin.permission() );
@@ -56,33 +57,33 @@ public class ChopChopBlockListener implements Listener
 		}
 		return false;
 	}
-		
+
 	public boolean breaks_tool( Player player, ItemStack item )
 	{
 		if( item != null && BlockAnalyser.is_tool( item.getType() ) )
 		{
-			ItemMeta meta = item.getItemMeta();			
-			int damage = ( ( Damageable ) meta ).getDamage();			
+			ItemMeta meta = item.getItemMeta();
+			int damage = ( ( Damageable ) meta ).getDamage();
 			damage = ( damage + ( BlockAnalyser.is_axe( item.getType() ) ? 1 : 2 ) );
-			
+
 			if( damage >= item.getType().getMaxDurability() )
 			{
 				return true;
 			}
-			
+
 	        ( ( Damageable ) meta ).setDamage( damage );
 	        item.setItemMeta( meta );
-		}		
+		}
 		return false;
 	}
-	
+
 	// Update tool damage and return true if tool was broken
 	private Boolean update_tool( Player player )
 	{
 		if( plugin.more_damage_to_tools && breaks_tool( player, player.getInventory().getItemInMainHand() ) )
 		{
 			// Break tool
-			player.getInventory().clear( player.getInventory().getHeldItemSlot() );			
+			player.getInventory().clear( player.getInventory().getHeldItemSlot() );
 			return true;
 		}
 		return false;
@@ -95,19 +96,19 @@ public class ChopChopBlockListener implements Listener
 		{
 			return;
 		}
-		
+
 		Block block = event.getBlock();
-		
+
 		if( BlockAnalyser.is_log_block( block.getType() ) )
 		{
 			Player player = event.getPlayer();
-			
+
 			if( !hasPermission( player ) ) return;
 			if( !isActive( player ) ) return;
 			if( check_tool( player ) ) return;
-			
+
 			event.setCancelled( true );
-			
+
 			if( Chop( event.getBlock(), player, event.getBlock().getWorld() ) )
 			{
 				update_tool( player );
@@ -126,7 +127,7 @@ public class ChopChopBlockListener implements Listener
 		if( BlockAnalyser.is_tree( plugin, highest, player, block ) )
 		{
 			getBlocksToChop( block, highest, blocks );
-			
+
 			if( plugin.logs_move_down )
 			{
 				move_down_logs( blocks, world, player );
@@ -151,17 +152,17 @@ public class ChopChopBlockListener implements Listener
 			{
 				blocks.add( block );
 			}
-						
+
 			for( BlockFace face : Definitions.faces )
 			{
 				getBranches( blocks, block.getRelative( face ) );
-				
+
 				if( !blocks.contains( block.getRelative( BlockFace.UP ).getRelative( face ) ) )
 				{
 					getBranches( blocks, block.getRelative( BlockFace.UP ).getRelative( face ) );
 				}
 			}
-			
+
 			if( block.getType() == Material.JUNGLE_LOG )
 			{
 				for( BlockFace face : Definitions.faces )
@@ -172,12 +173,12 @@ public class ChopChopBlockListener implements Listener
 					}
 				}
 			}
-						
+
 			if( blocks.contains( block.getRelative( BlockFace.UP ) ) || !BlockAnalyser.is_log_block( block.getRelative( BlockFace.UP ).getType() ) )
 			{
 				break;
 			}
-			
+
 			block = block.getRelative( BlockFace.UP );
 		}
 	}
@@ -193,7 +194,7 @@ public class ChopChopBlockListener implements Listener
 	public Block get_highest_log( Block block )
 	{
 		boolean has_log = true;
-		
+
 		while( has_log )
 		{
 			// Check if block on top is log
@@ -203,7 +204,7 @@ public class ChopChopBlockListener implements Listener
 				block = block.getRelative( BlockFace.UP );
 				continue;
 			}
-			
+
 			// Check blocks around of top block for logs
 			for( BlockFace face : Definitions.faces )
 			{
@@ -214,11 +215,11 @@ public class ChopChopBlockListener implements Listener
 					continue;
 				}
 			}
-			
+
 			// No more logs found
 			has_log = false;
 		}
-		
+
 		return block;
 	}
 
@@ -227,7 +228,7 @@ public class ChopChopBlockListener implements Listener
 		for( Block block : blocks )
 		{
 			block.breakNaturally();
-			
+
 			if( update_tool( player ) && plugin.interrupt_if_tool_breaks )
 			{
 				break;
@@ -238,7 +239,7 @@ public class ChopChopBlockListener implements Listener
 	public void move_down_logs( List<Block> blocks, World world, Player player )
 	{
 		List<Block> downs = new LinkedList<>();
-		
+
 		// Move block down
 		for( Block block : blocks )
 		{
@@ -256,7 +257,7 @@ public class ChopChopBlockListener implements Listener
 				update_tool( player );
 			}
 		}
-		
+
 		// Check moved down block for lone logs
 		for( Block block : downs )
 		{
@@ -267,23 +268,23 @@ public class ChopChopBlockListener implements Listener
 				update_tool( player );
 			}
 		}
-		
+
 		if( plugin.trees.containsKey( player ) )
 		{
 			plugin.trees.remove( player );
 		}
-		
+
 		if( downs.isEmpty() )
 		{
 			return;
 		}
-				
+
 		 Block[] blockarray = new Block[downs.size()];
 		 for( int i = 0; i < downs.size(); i++ )
-		 {			 
+		 {
 			 blockarray[i] = downs.get( i );
 		 }
-		 
+
 		 plugin.trees.put( player, blockarray );
 	}
 }
